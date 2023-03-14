@@ -13,8 +13,8 @@
     "sources": "https://github.com/JavaJump3r/LavaJumperCore"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/lavajumper/icon.png",
+  "license": "GPL v3",
+  "icon": "assets/lavajumper-core/icon.png",
 
   "environment": "*",
   "entrypoints": {
