@@ -32,5 +32,12 @@
     "java": ">=17"
   },
   "suggests": {
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/44sD49Aan3"
+      }
+    }
   }
 }
