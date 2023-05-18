@@ -1,6 +1,6 @@
 package io.github.javajumper.lavajumper.gui.widgets;
 
-import io.github.javajump3r.lavajumper.gui.datatypes.CircleSlice;
+import io.github.javajumper.lavajumper.datatypes.CircleSlice;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;

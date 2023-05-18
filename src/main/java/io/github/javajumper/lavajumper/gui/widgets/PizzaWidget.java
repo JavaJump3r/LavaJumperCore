@@ -1,6 +1,5 @@
 package io.github.javajumper.lavajumper.gui.widgets;
 
-import io.github.javajump3r.jjhud.client.features.pizzamenu.configurer.PizzaConfiguration;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
@@ -10,6 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec2f;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PizzaWidget implements Drawable, Element, Selectable {
     private final LinkedList<PizzaWidgetSlice> slices = new LinkedList<>();
@@ -92,5 +92,19 @@ public class PizzaWidget implements Drawable, Element, Selectable {
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
 
+    }
+
+    public static class PizzaConfiguration {
+        public final List<PizzaSlice> slices;
+        public PizzaConfiguration(List<? extends PizzaSlice> slices){
+            this.slices = new LinkedList<>(slices);
+        }
+
+        public PizzaConfiguration(){
+            this(new LinkedList<>());
+        }
+        public PizzaConfiguration(PizzaConfiguration configuration){
+            this(configuration.slices);
+        }
     }
 }

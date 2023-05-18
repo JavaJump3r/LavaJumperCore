@@ -1,7 +1,7 @@
 package io.github.javajumper.lavajumper.gui.widgets;
 
 import com.google.common.collect.Lists;
-import io.github.javajump3r.lavajumper.gui.GuiHelper;
+import io.github.javajumper.lavajumper.gui.GuiHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;

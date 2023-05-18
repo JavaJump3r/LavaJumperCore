@@ -1,9 +1,9 @@
 package io.github.javajumper.lavajumper.gui.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.javajump3r.lavajumper.gui.HoverManager;
-import io.github.javajump3r.lavajumper.gui.datatypes.Angle;
-import io.github.javajump3r.lavajumper.gui.datatypes.CircleSlice;
+import io.github.javajumper.lavajumper.datatypes.Angle;
+import io.github.javajumper.lavajumper.datatypes.CircleSlice;
+import io.github.javajumper.lavajumper.gui.HoverManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.DrawableHelper;

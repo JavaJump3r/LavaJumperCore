@@ -22,7 +22,9 @@ repositories {
 
 dependencies {
 	// To change the versions see the gradle.properties file
-
+	loom{
+		accessWidenerPath = file("src/main/resources/ljc.accesswidener")
+	}
 	//include because i can
 	modImplementation include("dev.isxander:yet-another-config-lib:${project.yacl_version}")
 	modImplementation include("com.github.JavaJump3r:JJAutoConfig:${project.autocfg_version}")
