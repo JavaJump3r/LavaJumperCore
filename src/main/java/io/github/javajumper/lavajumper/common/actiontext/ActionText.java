@@ -1,7 +1,6 @@
 package io.github.javajumper.lavajumper.common.actiontext;
 
 import net.minecraft.util.math.ColorHelper;
-
 public class ActionText {
     public ActionText(String text)
     {

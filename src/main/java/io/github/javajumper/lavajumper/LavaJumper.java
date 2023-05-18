@@ -28,12 +28,17 @@ import java.util.Arrays;
 				new ConfigTestClass();
 			log("LavaJumper Initialized");
 		}
+
+		/**
+		 * Prints array of objects to console
+		 * @param objects
+		 */
 		public static void log(Object... objects) {
 			var string = "";
 			for (Object arg : objects) {
 				if (arg == null)
 					arg = "null";
-				string = string + arg + ";";
+				string = string + arg;
 
 			}
 			DebugOutput.info(string);

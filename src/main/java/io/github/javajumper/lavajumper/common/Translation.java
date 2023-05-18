@@ -14,7 +14,6 @@ public class Translation {
 
     /**
      * Generates file for translation in game and puts it into .autoTranslateOutput folder
-     * works only in development Enviroment
      */
     public static void generateTranlationMap()
     {
@@ -27,10 +26,18 @@ public class Translation {
         if(!I18n.hasTranslation(key))
             translationMap.put(key,"");
     }
+
+    /**
+     * Gets translatable text component for key and adds it to list if it is doesn't have translation.
+     * After getting all translations you should call generateTranslationMap() static method ONCE to save it to .autoTranslateOutput folder
+     * @param key
+     * @return
+     */
     public static MutableText get(String key){
-        addKeyToTranslation("javajumper."+key);
-        return Text.translatable("javajumper."+key);
+        addKeyToTranslation(key);
+        return Text.translatable(key);
     }
+    @Deprecated
     public static MutableText getLocal(String key)
     {
         //some haccs

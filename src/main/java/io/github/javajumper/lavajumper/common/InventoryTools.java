@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.util.ActionResult;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,15 +60,10 @@ public class InventoryTools {
             this.slotActionType=action;
         }
 
-        @Override
-        public boolean isStillValid(MinecraftClient client) {
-            return true;
-        }
-
-        public boolean executeAction(MinecraftClient client)
+        public TickActionQueue.ActionResult executeAction(MinecraftClient client)
         {
             client.interactionManager.clickSlot(MinecraftClient.getInstance().player.currentScreenHandler.syncId, slot.id, button, slotActionType, client.player);
-            return true;
+            return TickActionQueue.ActionResult.SUCCESSFUL;
         }
     }
 }

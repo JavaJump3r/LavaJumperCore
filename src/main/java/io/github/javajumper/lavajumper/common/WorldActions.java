@@ -5,6 +5,7 @@ import net.minecraft.util.math.Vec3i;
 
 import java.util.function.BiFunction;
 
+@Deprecated
 public class WorldActions {
     public static void foreachBlockAround(MinecraftClient client, BiFunction<MinecraftClient, Vec3i, Boolean> function)
     {

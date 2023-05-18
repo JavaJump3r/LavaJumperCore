@@ -22,8 +22,11 @@ repositories {
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	modImplementation include('dev.isxander:yet-another-config-lib:2.2.0')
+
+	//include because i can
+	modImplementation include("dev.isxander:yet-another-config-lib:${project.yacl_version}")
 	modImplementation include("com.github.JavaJump3r:JJAutoConfig:${project.autocfg_version}")
+
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"

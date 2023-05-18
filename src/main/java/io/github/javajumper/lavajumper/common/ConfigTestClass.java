@@ -4,6 +4,10 @@ import io.github.javajump3r.autocfg.Configurable;
 import io.github.javajumper.lavajumper.common.actiontext.ActionTextRenderer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
+/**
+ * This class is test class for JJAutoConfig
+ * may be used as example
+ */
 public class ConfigTestClass extends Feature {
     @Configurable(defaultValue = "false")
     public static boolean enabled;
