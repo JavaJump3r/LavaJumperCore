@@ -43,4 +43,14 @@ import java.util.Arrays;
 			}
 			DebugOutput.info(string);
 		}
+		public static void testLog(Object... objects) {
+			var string = "";
+			for (Object arg : objects) {
+				if (arg == null)
+					arg = "null";
+				string = string + arg;
+
+			}
+			System.out.println(string);
+		}
 	}
