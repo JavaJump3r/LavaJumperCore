@@ -114,11 +114,6 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
     }
 
     @Override
-    public boolean changeFocus(boolean lookForwards) {
-        return screen.changeFocus(lookForwards);
-    }
-
-    @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
         return mouseX >= this.x &&
                mouseY >= this.y &&
@@ -147,7 +142,7 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
             //renderBackground(matrices);
             RenderSystem.enableBlend();
             fill(matrices,0,0,width,height,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000);
-            DrawableHelper.drawCenteredText(matrices,MinecraftClient.getInstance().textRenderer, "nullSubScreen",width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
+            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, "nullSubScreen",width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
         }
     }
 }

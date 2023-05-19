@@ -20,7 +20,7 @@ public class WorldActions {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     var playerpos = client.player.getPos();
-                    var pos = new Vec3i(playerpos.x + x, playerpos.y + y, playerpos.z + z);
+                    var pos = new Vec3i((int) (playerpos.x + x), (int) (playerpos.y + y), (int) (playerpos.z + z));
                     if(function.apply(client,pos)) return true;
                 }
             }

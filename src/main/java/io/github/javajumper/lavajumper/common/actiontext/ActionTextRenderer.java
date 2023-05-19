@@ -49,7 +49,7 @@ public class ActionTextRenderer {
     }
     public static void renderActionText(MatrixStack matrixStack, String text, int offset,int color)
     {
-        DrawableHelper.drawCenteredText(
+        DrawableHelper.drawCenteredTextWithShadow(
                 matrixStack,
                 MinecraftClient.getInstance().textRenderer,
                 text,

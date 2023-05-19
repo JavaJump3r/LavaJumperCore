@@ -85,6 +85,17 @@ public class PizzaWidget implements Drawable, Element, Selectable {
         var distanceSq = center.distanceSquared(mouse);
         return distanceSq < radius*radius && distanceSq > innerRadius*innerRadius;
     }
+
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
+    }
+
     public boolean isMouseOverRel(double mouseX, double mouseY){
         return isMouseOver(mouseX+x,mouseY+y);
     }

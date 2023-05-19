@@ -38,8 +38,7 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
 
         Tessellator tessellator = Tessellator.getInstance();
 
-        RenderSystem.enableBlend();
-        RenderSystem.disableTexture();
+        RenderSystem.enableBlend();;
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableCull();
 
@@ -68,7 +67,6 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
         tessellator.draw();
 
         RenderSystem.enableCull();
-        RenderSystem.enableTexture();
         RenderSystem.disableBlend();
 
 
@@ -88,7 +86,7 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
     public void renderText(MatrixStack matrixStack) {
         matrixStack.push();
         translateForward(matrixStack);
-        DrawableHelper.drawCenteredText(matrixStack, MinecraftClient.getInstance().textRenderer, pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
+        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
         matrixStack.pop();
     }
 
@@ -130,6 +128,16 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
 
 
         return circleSlice.inInSlice(Angle.newRadian(mouseAngle)) && parent.isMouseOverRel(mouseX,mouseY);
+    }
+
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 
     @Override
