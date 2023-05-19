@@ -1,11 +1,15 @@
 package io.github.javajumper.lavajumper.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.Random;
@@ -13,24 +17,18 @@ import java.util.Random;
 import static net.minecraft.client.gui.DrawableHelper.fill;
 
 public class GuiHelper {
-    public static void beginScissor(double x, double y, double endX, double endY)
-    {
-        var client = MinecraftClient.getInstance();
-        double width = endX - x;
-        double height = endY - y;
-        width = Math.max(0, width);
-        height = Math.max(0, height);
-        float d = (float) client.getWindow().getScaleFactor();
-        int ay = (int) ((client.getWindow().getScaledHeight() - (y + height)) * d);
-        RenderSystem.enableScissor((int) (x * d), ay, (int) (width * d), (int) (height * d));
+    public static Vec3d transformCoords(MatrixStack matrixStack,Vec3d vec3d){
+        return transformCoords(matrixStack,vec3d.x,vec3d.y,vec3d.z);
     }
-    public static void beginMatrixScissor(MatrixStack matrixStack,double x, double y, double endX, double endY){
-        var pos1 = matrixStack.peek().getPositionMatrix().transform(new Vector4f((float) x, (float) y,0,1));
-        var pos2 = matrixStack.peek().getPositionMatrix().transform(new Vector4f((float) endX, (float) endY,0,1));
-        GuiHelper.beginScissor(pos1.x,pos1.y,pos2.x,pos2.y);
+    public static Vec3d transformCoords(MatrixStack matrixStack,double x,double y, double z){
+        var tv = matrixStack.peek().getPositionMatrix().transform(new Vector4f((float) x, (float) y, (float) z,1));
+        return new Vec3d(new Vector3f(tv.x,tv.y,tv.z));
+    }
+    public static Vec3d transformCoords(MatrixStack matrixStack,double x,double y){
+        return transformCoords(matrixStack,x,y,0);
     }
     public static void endScissor(){
-        RenderSystem.disableScissor();
+        DrawableHelper.disableScissor();
     }
     public static void renderSides(MatrixStack matrices, int x, int y, int width, int height)
     {

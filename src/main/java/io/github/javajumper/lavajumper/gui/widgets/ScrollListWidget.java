@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import io.github.javajumper.lavajumper.gui.GuiHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 import net.minecraft.client.gui.widget.PressableWidget;
@@ -19,9 +20,10 @@ import java.util.function.Supplier;
 public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWidget.ScrollListEntry> {
     public ScrollListWidget(MinecraftClient client, int width, int height, int top,int itemHeight) {
         super(client,width,height,top,height,itemHeight);
-        setRenderBackground(false);
-        setRenderHeader(false,0);
+        //setRenderBackground(false);
+        //setRenderHeader(false,0);
     }
+    private MatrixStack tempMatrixStack;
     @Override
     public int getRowWidth() {
         return this.width;
@@ -44,9 +46,9 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
 
     @Override
     public void render(MatrixStack martixStack, int mouseX, int mouseY, float delta) {
-        GuiHelper.beginMatrixScissor(martixStack,left,top,left+width,top+height);
+        DrawableHelper.enableScissor(left,top,left+width,top+height-1);
         super.render(martixStack, mouseX, mouseY, delta);
-        GuiHelper.endScissor();
+        DrawableHelper.disableScissor();
     }
     public static class ScrollListEntry extends AlwaysSelectedEntryListWidget.Entry<ScrollListEntry> {
         private final List<Drawable> drawables = Lists.newArrayList();

@@ -24,6 +24,7 @@
   },
   "accessWidener": "ljc.accesswidener",
   "mixins": [
+    "ljc.mixin.json"
   ],
 
   "depends": {

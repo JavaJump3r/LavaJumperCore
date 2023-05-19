@@ -1,6 +1,8 @@
 package io.github.javajumper.lavajumper.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import io.github.javajumper.lavajumper.gui.fix.ScissorFix;
+import io.github.javajumper.lavajumper.mixin.ScissorMixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.Screen;
@@ -33,13 +35,15 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
         screen.init(MinecraftClient.getInstance(),width,height);
     }
 
+
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
         matrixStack.push();
         matrixStack.translate(x,y,0);
-
+        //GuiHelper.beginMatrixScissor();
+        ScissorFix.setMatrix(matrixStack);
         screen.render(matrixStack, mouseX-x, mouseY-y, delta);
-        GuiHelper.endScissor();
+        //GuiHelper.endScissor();
         matrixStack.pop();
     }
 
@@ -112,6 +116,8 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
     public void setFocused(@Nullable Element focused) {
         screen.setFocused(focused);
     }
+
+
 
     @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
