@@ -3,15 +3,13 @@ package io.github.javajumper.lavajumper.datatypes;
 public class CircleSlice {
     public final Angle startAngle;
     public final Angle endAngle;
-    public final Angle midAngle;
 
+    public Angle getMidAngle() {
+        return Angle.newRadian((this.startAngle.getRadian()+this.endAngle.getRadian())/2+(float)(endAngle.getRadian()<startAngle.getRadian()?Math.PI:0));
+    }
     public CircleSlice(Angle startAngle, Angle endAngle){
-
         this.startAngle = startAngle;
         this.endAngle = endAngle;
-
-        var inverted = endAngle.getRadian()<startAngle.getRadian();
-        this.midAngle = Angle.newRadian((this.startAngle.getRadian()+this.endAngle.getRadian())/2+(float)(inverted?Math.PI:0));
     }
 
     public static CircleSlice radians(float startAngle, float endAngle) {

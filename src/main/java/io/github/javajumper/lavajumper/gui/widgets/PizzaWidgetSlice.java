@@ -92,10 +92,10 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
 
     private void translateForward(MatrixStack matrixStack) {
         var forward = smoothFunc(hoverManager.getHoverProgress())* parent.radius/30;
-        matrixStack.translate(-cos(circleSlice.midAngle.getRadian())*forward,-sin(circleSlice.midAngle.getRadian())*forward,0);
+        matrixStack.translate(-cos(circleSlice.getMidAngle().getRadian())*forward,-sin(circleSlice.getMidAngle().getRadian())*forward,0);
     }
     private Vec2f getRenderPos(){
-        var mid = pizzaSlice.getSlice().midAngle.getRadian();
+        var mid = pizzaSlice.getSlice().getMidAngle().getRadian();
         return new Vec2f((float) -cos(mid), (float) -sin(mid)).multiply(parent.radius*0.75f);
     }
     @Override
