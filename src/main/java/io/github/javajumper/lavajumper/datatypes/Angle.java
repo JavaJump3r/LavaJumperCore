@@ -1,7 +1,7 @@
 package io.github.javajumper.lavajumper.datatypes;
 
 public class Angle {
-    private float radianAngle;
+    public final float radianAngle;
     private Angle(float angle){
         this.radianAngle=limitAngle(angle);
     }
