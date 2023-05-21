@@ -9,8 +9,8 @@
     "JavaJumper"
   ],
   "contact": {
-    "homepage": "https://javajump3r.github.io",
-    "sources": "https://github.com/JavaJump3r/LavaJumperCore"
+    "homepage": "https://JumperOnJava.github.io",
+    "sources": "https://github.com/JumperOnJava/LavaJumperCore"
   },
 
   "license": "GPL v3",
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.javajumper.lavajumper.LavaJumper"
+      "io.github.JumperOnJava.lavajumper.LavaJumper"
     ]
   },
   "accessWidener": "ljc.accesswidener",
