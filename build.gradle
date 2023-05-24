@@ -26,8 +26,8 @@ dependencies {
 		accessWidenerPath = file("src/main/resources/ljc.accesswidener")
 	}
 	//include because i can
-	modImplementation include("dev.isxander:yet-another-config-lib:${project.yacl_version}")
-	modImplementation include("com.github.JavaJump3r:JJAutoConfig:${project.autocfg_version}")
+	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+	modImplementation "com.github.JavaJump3r:JJAutoConfig:${project.autocfg_version}"
 
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"

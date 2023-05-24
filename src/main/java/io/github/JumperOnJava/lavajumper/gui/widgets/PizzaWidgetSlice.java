@@ -5,8 +5,8 @@ import io.github.JumperOnJava.lavajumper.datatypes.Angle;
 import io.github.JumperOnJava.lavajumper.datatypes.CircleSlice;
 import io.github.JumperOnJava.lavajumper.gui.HoverManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
@@ -30,11 +30,11 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
 
         hoverManager.tickHover(isMouseOver(mouseX,mouseY),delta);
 
-        matrixStack.push();
+        context.getMatrices().push();
 
         Tessellator tessellator = Tessellator.getInstance();
 
@@ -45,11 +45,11 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         bufferBuilder.begin(VertexFormat.DrawMode.TRIANGLE_STRIP, VertexFormats.POSITION_COLOR);
 
-        var peekMatrix = matrixStack.peek().getPositionMatrix();
+        var peekMatrix = context.getMatrices().peek().getPositionMatrix();
 
         float res = (float) (PI/60);
 
-        translateForward(matrixStack);
+        translateForward(context.getMatrices());
 
         if(circleSlice.endAngle.getRadian()!= circleSlice.startAngle.getRadian()) {
             for (var a = circleSlice.startAngle.getRadian();
@@ -70,24 +70,23 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
         RenderSystem.disableBlend();
 
 
-        matrixStack.pop();
+        context.getMatrices().pop();
     }
-    public void renderIcons(MatrixStack matrixStack){
-        matrixStack.push();
-        translateForward(matrixStack);
+    public void renderIcons(DrawContext context){
+        context.getMatrices().push();
+        translateForward(context.getMatrices());
         if(pizzaSlice.getIconTexture()==null) {
-            matrixStack.pop();
+            context.getMatrices().pop();
             return;
         }
-        RenderSystem.setShaderTexture(0,pizzaSlice.getIconTexture());
-        DrawableHelper.drawTexture(matrixStack,(int) (getRenderPos().x-16), (int) (getRenderPos().y-16),0,0,32,32,32,32);
-        matrixStack.pop();
+        context.drawTexture(pizzaSlice.getIconTexture(),(int) (getRenderPos().x-16), (int) (getRenderPos().y-16),0,0,32,32,32,32);
+        context.getMatrices().pop();
     }
-    public void renderText(MatrixStack matrixStack) {
-        matrixStack.push();
-        translateForward(matrixStack);
-        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
-        matrixStack.pop();
+    public void renderText(DrawContext context) {
+        context.getMatrices().push();
+        translateForward(context.getMatrices());
+        context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
+        context.getMatrices().pop();
     }
 
     private void translateForward(MatrixStack matrixStack) {

@@ -2,8 +2,8 @@ package io.github.JumperOnJava.lavajumper.gui.widgets;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 import net.minecraft.client.gui.widget.PressableWidget;
@@ -44,10 +44,10 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
     }
 
     @Override
-    public void render(MatrixStack martixStack, int mouseX, int mouseY, float delta) {
-        DrawableHelper.enableScissor(left,top,left+width,top+height-1);
-        super.render(martixStack, mouseX, mouseY, delta);
-        DrawableHelper.disableScissor();
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        context.enableScissor(left,top,left+width,top+height-1);
+        super.render(context, mouseX, mouseY, delta);
+        context.disableScissor();
     }
 
     /**
@@ -75,7 +75,7 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
             }
         }
         @Override
-        public void render(MatrixStack matrixStack,
+        public void render(DrawContext context,
                            int index,
                            int y, int x,
                            int entryWidth,
@@ -84,16 +84,16 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
                            boolean hovered,
                            float delta) {
             for (var d : drawables) {
-                matrixStack.push();
-                matrixStack.translate(x, y, 0);
+                context.getMatrices().push();
+                context.getMatrices().translate(x, y, 0);
                 if(!isHoveredFunction.apply(mouseX,mouseY)){
                     mouseX+=100000;
                     mouseY+=100000;
                 }
-                d.render(matrixStack, mouseX - x, mouseY - y, delta);
+                d.render(context, mouseX - x, mouseY - y, delta);
                 currentX = x;
                 currentY = y;
-                matrixStack.pop();
+                context.getMatrices().pop();
             }
         }
 

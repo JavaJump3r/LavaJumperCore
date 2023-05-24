@@ -1,23 +1,28 @@
 package io.github.JumperOnJava.lavajumper.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.JumperOnJava.lavajumper.gui.fix.ScissorFix;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.navigation.GuiNavigation;
+import net.minecraft.client.gui.navigation.GuiNavigationPath;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
+import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * Widget for rendering screens in screens.
  * Use init method so set widget dimensions and setScreen method to set/change screen in widget.
  * When screen is not set up or equals null widget will display empty screen with random color and "nullSubScreen" text in center
  */
-public class SubScreen implements Drawable, ParentElement, Selectable {
+public class SubScreen implements Drawable, ParentElement, Selectable, Widget {
     private Screen screen;
     private int x,y,width,height;
     public SubScreen init(int x, int y, int width, int height) {
@@ -42,14 +47,13 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
 
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
-        matrixStack.push();
-        matrixStack.translate(x,y,0);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        context.getMatrices().push();
+        context.getMatrices().translate(x,y,0);
         //GuiHelper.beginMatrixScissor();
-        ScissorFix.setMatrix(matrixStack);
-        screen.render(matrixStack, mouseX-x, mouseY-y, delta);
+        screen.render(context, mouseX-x, mouseY-y, delta);
         //GuiHelper.endScissor();
-        matrixStack.pop();
+        context.getMatrices().pop();
     }
 
     @Override
@@ -64,6 +68,11 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
     @Override
     public List<? extends Element> children() {
         return screen.children();
+    }
+
+    @Override
+    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
+        return ParentElement.super.hoveredElement(mouseX, mouseY);
     }
 
     @Override
@@ -122,6 +131,43 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
         screen.setFocused(focused);
     }
 
+    @Override
+    public void setFocused(boolean focused) {
+        ParentElement.super.setFocused(focused);
+    }
+
+    @Override
+    public boolean isFocused() {
+        return ParentElement.super.isFocused();
+    }
+
+    @Nullable
+    @Override
+    public GuiNavigationPath getFocusedPath() {
+        return ParentElement.super.getFocusedPath();
+    }
+
+    @Override
+    public ScreenRect getNavigationFocus() {
+        return ParentElement.super.getNavigationFocus();
+    }
+
+    @Override
+    public void setPosition(int x, int y) {
+        Widget.super.setPosition(x, y);
+    }
+
+
+    @Override
+    public void focusOn(@Nullable Element element) {
+        ParentElement.super.focusOn(element);
+    }
+
+    @Nullable
+    @Override
+    public GuiNavigationPath getNavigationPath(GuiNavigation navigation) {
+        return ParentElement.super.getNavigationPath(navigation);
+    }
 
 
     @Override
@@ -142,18 +188,59 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
         return Selectable.super.isNarratable();
     }
 
+
+    @Override
+    public void setX(int x) {
+        this.x=x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y=y;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public void forEachChild(Consumer<ClickableWidget> consumer) {
+
+    }
+
+    @Override
+    public int getNavigationOrder() {
+        return ParentElement.super.getNavigationOrder();
+    }
+
     private class NullSubScreen extends Screen {
         public NullSubScreen() {
             super(Text.empty());
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            super.render(context, mouseX, mouseY, delta);
             //renderBackground(matrices);
             RenderSystem.enableBlend();
-            fill(matrices,0,0,width,height,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000);
-            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, "nullSubScreen",width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
+            context.fill(0,0,width,height,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000);
+            context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, "nullSubScreen",width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
         }
     }
 }

@@ -1,6 +1,7 @@
 package io.github.JumperOnJava.lavajumper.gui.widgets;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
@@ -41,23 +42,23 @@ public class PizzaWidget implements Drawable, Element, Selectable {
         }
         return this;
     }
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta){
-        matrixStack.push();
+    public void render(DrawContext context, int mouseX, int mouseY, float delta){
+        context.getMatrices().push();
         //ActionTextRenderer.sendChatMessag*e("x: ",mouseX," y: ",mouseY);
         var prof = MinecraftClient.getInstance().getProfiler();
         prof.push("Pizza");
-        matrixStack.translate(x, y,0);
+        context.getMatrices().translate(x, y,0);
         slices.forEach(slice->{
-            slice.render(matrixStack,mouseX-x,mouseY-y,delta);
+            slice.render(context,mouseX-x,mouseY-y,delta);
         });
         slices.forEach(slice->{
-            slice.renderText(matrixStack);
+            slice.renderText(context);
         });
         slices.forEach(slice->{
-            slice.renderIcons(matrixStack);
+            slice.renderIcons(context);
         });
         prof.pop();
-        matrixStack.pop();
+        context.getMatrices().pop();
 
     }
 
