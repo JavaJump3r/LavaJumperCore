@@ -1,7 +1,7 @@
 package io.github.JumperOnJava.lavajumper;
 
+import io.github.JumperOnJava.autocfg.ConfigGenerator;
 import io.github.JumperOnJava.lavajumper.common.ConfigTestClass;
-import io.github.javajump3r.autocfg.ConfigGenerator;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
