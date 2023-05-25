@@ -28,11 +28,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.19",
+    "fabricloader": ">=0.14.16",
     "fabric-api": "*",
-    "minecraft": "1.19.4",
-    "java": ">=17",
-    "jjautoconfig": "*"
+    "minecraft": "1.19.2",
+    "java": ">=17"
   },
   "suggests": {
   },

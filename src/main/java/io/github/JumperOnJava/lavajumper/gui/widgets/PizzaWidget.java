@@ -91,12 +91,10 @@ public class PizzaWidget implements Drawable, Element, Selectable {
         return distanceSq < radius*radius && distanceSq > innerRadius*innerRadius;
     }
 
-    @Override
     public void setFocused(boolean focused) {
 
     }
 
-    @Override
     public boolean isFocused() {
         return false;
     }

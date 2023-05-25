@@ -1,27 +1,18 @@
 package io.github.JumperOnJava.lavajumper;
 
-import io.github.JumperOnJava.lavajumper.common.ConfigTestClass;
-import io.github.javajump3r.autocfg.ConfigGenerator;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Environment(EnvType.CLIENT)
 	public class LavaJumper implements ClientModInitializer {
 		private static Logger DebugOutput = LoggerFactory.getLogger("LavaJumper");
-		public static ConfigGenerator LavaJumperConfig;
 		static {
-			var config = new ConfigGenerator("LavaJumper");
-			config.restoreConfig();
-			LavaJumperConfig = config;
 		}
 		@Override
 		public void onInitializeClient() {
-			if (FabricLoader.getInstance().isDevelopmentEnvironment())
-				new ConfigTestClass();
 			log("LavaJumper Initialized");
 		}
 

@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.ColorHelper;
 
@@ -52,7 +53,7 @@ public class ActionTextRenderer {
         DrawableHelper.drawCenteredTextWithShadow(
                 matrixStack,
                 MinecraftClient.getInstance().textRenderer,
-                text,
+                (OrderedText) Text.literal(text),
                 MinecraftClient.getInstance().getWindow().getScaledWidth()/2,
                 (int) (MinecraftClient.getInstance().getWindow().getScaledHeight()/2*1.65 + offset*8),
                 color);

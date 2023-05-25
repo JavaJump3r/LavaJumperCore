@@ -7,6 +7,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,7 +47,7 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
         matrixStack.push();
         matrixStack.translate(x,y,0);
         //GuiHelper.beginMatrixScissor();
-        ScissorFix.setMatrix(matrixStack);
+
         screen.render(matrixStack, mouseX-x, mouseY-y, delta);
         //GuiHelper.endScissor();
         matrixStack.pop();
@@ -153,7 +154,7 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
             //renderBackground(matrices);
             RenderSystem.enableBlend();
             fill(matrices,0,0,width,height,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000);
-            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, "nullSubScreen",width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
+            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, (OrderedText)(Text.literal("nullSubScreen")),width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
         }
     }
 }

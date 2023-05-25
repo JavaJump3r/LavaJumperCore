@@ -12,6 +12,7 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.OrderedText;
 import net.minecraft.util.math.Vec2f;
 
 import static java.lang.Math.*;
@@ -61,7 +62,7 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
             bufferBuilder.vertex(peekMatrix, (float) (-cos(circleSlice.endAngle.getRadian()) * parent.radius), (float) (-sin(circleSlice.endAngle.getRadian()) * parent.radius), 0f).color(pizzaSlice.getBackgroundColor()).next();
             bufferBuilder.vertex(peekMatrix, (float) (-cos(circleSlice.endAngle.getRadian()) * parent.innerRadius), (float) (-sin(circleSlice.endAngle.getRadian()) * parent.innerRadius), 0f).color(pizzaSlice.getBackgroundColor()).next();
         }
-        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
         RenderSystem.setShaderColor(1f,1f,1f,1f);
 
         tessellator.draw();
@@ -86,7 +87,7 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
     public void renderText(MatrixStack matrixStack) {
         matrixStack.push();
         translateForward(matrixStack);
-        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
+        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, (OrderedText) pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
         matrixStack.pop();
     }
 
@@ -130,12 +131,10 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
         return circleSlice.inInSlice(Angle.newRadian(mouseAngle)) && parent.isMouseOverRel(mouseX,mouseY);
     }
 
-    @Override
     public void setFocused(boolean focused) {
 
     }
 
-    @Override
     public boolean isFocused() {
         return false;
     }
