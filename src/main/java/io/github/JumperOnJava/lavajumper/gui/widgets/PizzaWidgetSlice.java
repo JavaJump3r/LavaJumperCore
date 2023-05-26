@@ -87,7 +87,7 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
     public void renderText(MatrixStack matrixStack) {
         matrixStack.push();
         translateForward(matrixStack);
-        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, (OrderedText) pizzaSlice.getName(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
+        DrawableHelper.drawCenteredTextWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, pizzaSlice.getName().asOrderedText(), (int) getRenderPos().x, (int) (getRenderPos().y + 18), 0xFFFFFFFF);
         matrixStack.pop();
     }
 

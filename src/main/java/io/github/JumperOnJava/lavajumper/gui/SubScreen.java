@@ -154,7 +154,7 @@ public class SubScreen implements Drawable, ParentElement, Selectable {
             //renderBackground(matrices);
             RenderSystem.enableBlend();
             fill(matrices,0,0,width,height,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000);
-            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, (OrderedText)(Text.literal("nullSubScreen")),width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
+            DrawableHelper.drawCenteredTextWithShadow(matrices,MinecraftClient.getInstance().textRenderer, (Text.literal("nullSubScreen")).asOrderedText(),width/2,height/2,(int)(Math.pow(x + width + y + height,5f)%Integer.MAX_VALUE)&0x00FFFFFF|0x3F000000^0x00FFFFFF);
         }
     }
 }

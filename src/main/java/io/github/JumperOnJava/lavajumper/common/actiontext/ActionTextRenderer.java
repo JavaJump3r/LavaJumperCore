@@ -53,7 +53,7 @@ public class ActionTextRenderer {
         DrawableHelper.drawCenteredTextWithShadow(
                 matrixStack,
                 MinecraftClient.getInstance().textRenderer,
-                (OrderedText) Text.literal(text),
+                Text.literal(text).asOrderedText(),
                 MinecraftClient.getInstance().getWindow().getScaledWidth()/2,
                 (int) (MinecraftClient.getInstance().getWindow().getScaledHeight()/2*1.65 + offset*8),
                 color);
