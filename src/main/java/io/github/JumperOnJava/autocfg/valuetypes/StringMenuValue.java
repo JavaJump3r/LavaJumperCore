@@ -3,6 +3,7 @@ package io.github.JumperOnJava.autocfg.valuetypes;
 import dev.isxander.yacl3.api.Controller;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.gui.controllers.string.StringController;
+import dev.isxander.yacl3.impl.OptionImpl;
 import io.github.JumperOnJava.autocfg.Configurable;
 import io.github.JumperOnJava.autocfg.FieldValue;
 import io.github.JumperOnJava.autocfg.SerializerContainer;
@@ -13,7 +14,7 @@ public class StringMenuValue extends MenuValue {
     public Function<String,String> formatter;
 
     @Override
-    public Class getTarget() {
+    public Class<String> getTarget() {
         return String.class;
     }
 
@@ -23,7 +24,8 @@ public class StringMenuValue extends MenuValue {
     }
 
     @Override
-    public Controller getController(Option<?> option) {
-        return new StringController((Option<String>) option);
+    public Controller<String> getController(Option<?> option) {
+        var c = new StringController((Option<String>) option);
+        return c;
     }
 }

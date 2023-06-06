@@ -19,7 +19,7 @@ public class DoubleRangeMenuValue extends RangeMenuValue {
     public Controller getController(Option<?> option) {
         if(minValue == maxValue)
         {
-            return new DoubleFieldController((Option<Double>) option,Double.MIN_VALUE,Double.MAX_VALUE);
+            return new DoubleFieldController((Option<Double>) option);
         }
 
         if(interval == 0)

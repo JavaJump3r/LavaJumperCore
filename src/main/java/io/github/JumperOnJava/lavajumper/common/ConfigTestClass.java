@@ -21,18 +21,19 @@ public class ConfigTestClass extends Feature {
     public static double doubleSlider = 5;
     @Configurable(defaultValue = "String field")
     public static String stringField = "Strign test";
-    @Configurable(defaultValue = "STATE_ABC")
-    public static ConfigTestEnum enumField = ConfigTestEnum.STATE_XYZ;
+    //@Configurable(defaultValue = "STATE_ABC")
+    //public static ConfigTestEnum enumField = ConfigTestEnum.STATE_XYZ;
     static {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(enabled)
-            ActionTextRenderer.sendChatMessage(String.format("%d;%d;%.2f;%.2f;%s;%s",integerField,integerSlider,doubleField,doubleSlider,stringField, enumField));
+            ActionTextRenderer.sendChatMessage(String.format("%d;%d;%.2f;%.2f;%s;%s",integerField,integerSlider,doubleField,doubleSlider,stringField,"enum no"));
         });
     }
-}
-enum ConfigTestEnum{
-    STATE_ABC,
-    STATE_XYZ,
-    STATE_XDD,
-    STATE_123
+
+    enum ConfigTestEnum{
+        STATE_ABC,
+        STATE_XYZ,
+        STATE_XDD,
+        STATE_123
+    }
 }

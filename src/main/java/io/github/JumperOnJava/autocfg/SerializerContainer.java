@@ -40,7 +40,7 @@ public class SerializerContainer {
     public MenuValue createMenuValueByClass(Class fieldClass, String translationKey, String path, FieldValue value, Configurable metaData) {
         if(!fieldClass.isEnum()) {
             try {
-                return (MenuValue)classData.get(fieldClass).constructor.apply(translationKey,path,value,metaData,this);
+                return classData.get(fieldClass).constructor.apply(translationKey,path,value,metaData,this);
             }
             catch (Exception e)
             {
@@ -48,7 +48,7 @@ public class SerializerContainer {
             }
         }
         else {
-            return new EnumMenuValue<>(translationKey,path,value,metaData,this);
+            return new EnumMenuValue(translationKey,path,value,metaData,this);
         }
     }
     public Map<Class<?>, ClassSerializer<?>> classData;

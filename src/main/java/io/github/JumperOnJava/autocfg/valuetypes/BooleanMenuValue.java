@@ -14,11 +14,11 @@ public class BooleanMenuValue extends MenuValue {
     }
 
     @Override
-    public Class getTarget() {
+    public Class<Boolean> getTarget() {
         return boolean.class;
     }
     @Override
-    public Controller getController(Option<?> option) {
+    public Controller<?> getController(Option<?> option) {
         return new BooleanController((Option<Boolean>) option);
     }
 }

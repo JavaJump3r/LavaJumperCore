@@ -9,6 +9,7 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+var yacl_beta = yacl_beta.equals("true");
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -16,7 +17,11 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-	maven { url = 'https://maven.isxander.dev/releases' }
+	if(yacl_beta)
+		maven { url = 'https://maven.isxander.dev/snapshots' }
+	else
+		maven { url = 'https://maven.isxander.dev/releases' }
+
 	maven { url = "https://maven.terraformersmc.com/"}
 }
 
@@ -25,8 +30,8 @@ dependencies {
 	loom{
 		accessWidenerPath = file("src/main/resources/ljc.accesswidener")
 	}
-	//include because i can
-	modImplementation "dev.isxander.yacl:yet-another-config-lib-fabric:${project.yacl_version}"
+	def yacl =  "dev.isxander.yacl:yet-another-config-lib-fabric:".concat(yacl_beta?"${project.yacl_version_beta}":"${project.yacl_version}")
+	modImplementation (yacl)
 
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"

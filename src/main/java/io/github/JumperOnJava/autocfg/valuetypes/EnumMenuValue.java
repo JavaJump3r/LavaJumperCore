@@ -7,20 +7,21 @@ import io.github.JumperOnJava.autocfg.Configurable;
 import io.github.JumperOnJava.autocfg.FieldValue;
 import io.github.JumperOnJava.autocfg.SerializerContainer;
 
-public class EnumMenuValue<T extends Enum> extends MenuValue {
+public class EnumMenuValue extends MenuValue {
 
-    private Class<T> type;
+    private Class<?> type;
     @Override
-    public Class<T> getTarget() {
-        return (Class<T>) getValue().getClass();
+    public Class<?> getTarget() {
+        return getValue().getClass();
     }
 
     @Override
-    public Controller<T> getController(Option<?> option) {
+    public Controller<?> getController(Option<?> option) {
         return new EnumController(option,type);
     }
 
     public EnumMenuValue(String translationKey, String path, FieldValue value, Configurable metadata, SerializerContainer classDataContainer) {
         super(translationKey,path,value,metadata, classDataContainer);
+        this.type = value.get().getClass();
     }
 }

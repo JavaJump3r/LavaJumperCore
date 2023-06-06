@@ -172,14 +172,14 @@ public class ConfigGenerator {
             categoryBuilder.name(translation.get(category.categoryTranslationKey));
             for(var field : category.fields)
             {
-                var optionBuilder = Option.createBuilder(field.getTarget());
+                var optionBuilder = Option.createBuilder();
                 optionBuilder.name(translation.get((field.getTranslationKey())));
                 optionBuilder.binding(
                         field.getDefaultValue(),
                         field::getValue,
                         field::setValue
                 );
-                optionBuilder.controller(b -> field.getController((Option<?>)b));
+                optionBuilder.customController(field::getController);
                 categoryBuilder.option(optionBuilder.build());
             }
             builder.category(categoryBuilder.build());
@@ -198,6 +198,7 @@ public class ConfigGenerator {
     public Screen getFinishedConfigScreen(Screen parent)
     {
         restoreConfig();
-        return getConfigScreen(getEverything(),parent);
+        var screen = getConfigScreen(getEverything(),parent);;
+        return screen;
     }
 }
