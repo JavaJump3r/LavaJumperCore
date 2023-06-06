@@ -3,9 +3,9 @@ package io.github.JumperOnJava.autocfg;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
-import dev.isxander.yacl.api.ConfigCategory;
-import dev.isxander.yacl.api.Option;
-import dev.isxander.yacl.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.ConfigCategory;
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import io.github.JumperOnJava.autocfg.translationGenerator.Translation;
 import io.github.JumperOnJava.autocfg.valuetypes.MenuValue;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;

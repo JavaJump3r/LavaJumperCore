@@ -1,9 +1,9 @@
 package io.github.JumperOnJava.autocfg.valuetypes;
 
-import dev.isxander.yacl.api.Controller;
-import dev.isxander.yacl.api.Option;
-import dev.isxander.yacl.gui.controllers.slider.DoubleSliderController;
-import dev.isxander.yacl.gui.controllers.string.number.DoubleFieldController;
+import dev.isxander.yacl3.api.Controller;
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.gui.controllers.slider.DoubleSliderController;
+import dev.isxander.yacl3.gui.controllers.string.number.DoubleFieldController;
 import io.github.JumperOnJava.autocfg.Configurable;
 import io.github.JumperOnJava.autocfg.FieldValue;
 import io.github.JumperOnJava.autocfg.SerializerContainer;
