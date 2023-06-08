@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 @Environment(EnvType.CLIENT)
 	public class LavaJumper implements ClientModInitializer {
 		private static Logger DebugOutput = LoggerFactory.getLogger("LavaJumper");
-		public static ConfigGenerator LavaJumperConfig;
+		private static ConfigGenerator LavaJumperConfig;
 		static {
 			var config = new ConfigGenerator("LavaJumper");
 			config.restoreConfig();

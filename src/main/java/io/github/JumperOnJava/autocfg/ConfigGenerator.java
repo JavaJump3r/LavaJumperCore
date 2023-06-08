@@ -10,12 +10,15 @@ import io.github.JumperOnJava.autocfg.translationGenerator.Translation;
 import io.github.JumperOnJava.autocfg.valuetypes.MenuValue;
 import io.github.JumperOnJava.lavajumper.common.FileReadWrite;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.nio.charset.MalformedInputException;
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -163,7 +166,7 @@ public class ConfigGenerator {
     public Screen getConfigScreen(List<Category> categories, Screen parent)
     {
         if(!FabricLoader.getInstance().isModLoaded("yet-another-config-lib"))
-            return null;
+            return NoYaclScreen;
         var builder = YetAnotherConfigLib.createBuilder();
         builder.title(Text.of("LavaJumper Configuration XDD"));
         for(var category : categories)
@@ -201,4 +204,12 @@ public class ConfigGenerator {
         var screen = getConfigScreen(getEverything(),parent);;
         return screen;
     }
+    public static final Screen NoYaclScreen = new Screen(Text.empty()) {
+        public void render(DrawContext context,int mx,int my,float d){
+            context.drawCenteredTextWithShadow(
+                    MinecraftClient.getInstance().textRenderer,
+                    "Please install Yet Another Config Lib to see this screen",
+                    width/2,height/2,0xFFFFFFFF);
+        }
+    };
 }
