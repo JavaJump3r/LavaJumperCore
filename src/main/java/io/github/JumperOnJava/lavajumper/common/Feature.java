@@ -8,6 +8,6 @@ import io.github.JumperOnJava.lavajumper.LavaJumper;
 public abstract class Feature {
     public Feature()
     {
-        LavaJumper.LavaJumperConfig.addClassToConfig(this.getClass());
+        LavaJumper.getConfig().addClassToConfig(this.getClass());
     }
 }
