@@ -15,9 +15,6 @@ public class Binder {
      * @param category
      * @param callback
      */
-    public static void addBind(String displayName, String category, Consumer<MinecraftClient> callback){
-        addBind(displayName,category,-1,callback);
-    }
 
     /**
      * Adds bind
@@ -26,7 +23,7 @@ public class Binder {
      * @param defaultKey
      * @param callback
      */
-    public static void addBind(String displayName, String category, int defaultKey, Consumer<MinecraftClient> callback)
+    public static KeyBinding addBind(String displayName, String category, int defaultKey, Consumer<MinecraftClient> callback)
     {
         var bind = new KeyBinding(displayName, InputUtil.Type.KEYSYM, -1, category); //GLFW.GLFW_KEY_DOWN
         KeyBindingHelper.registerKeyBinding(bind);
@@ -36,17 +33,23 @@ public class Binder {
                 callback.accept(client);
             }
         });
+        return bind;
     }
 
     /**
      * Adds bind under "LavaJumper" category
+     *
      * @param displayName
      * @param defaultKey
      * @param callback
+     * @return
      * @api
      */
-    public static void addBind(String displayName, int defaultKey, Consumer<MinecraftClient> callback)
+    public static KeyBinding addBind(String displayName, int defaultKey, Consumer<MinecraftClient> callback)
     {
-        addBind(displayName,"LavaJumper",defaultKey,callback);
+        return addBind(displayName,"LavaJumper",defaultKey,callback);
+    }
+    public static KeyBinding addBind(String displayName, String category, Consumer<MinecraftClient> callback){
+        return addBind(displayName,category,-1,callback);
     }
 }
