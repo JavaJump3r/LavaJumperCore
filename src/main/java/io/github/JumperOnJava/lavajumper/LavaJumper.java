@@ -6,6 +6,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,13 +14,19 @@ import org.slf4j.LoggerFactory;
 	public class LavaJumper implements ClientModInitializer {
 		private static Logger DebugOutput = LoggerFactory.getLogger("LavaJumper");
 		private static ConfigGenerator LavaJumperConfig;
+		@Nullable
 		public static ConfigGenerator getConfig(){
+			var isYaclLoaded = FabricLoader.getInstance().isModLoaded("yet_another_config_lib_v3");
+			if(!isYaclLoaded)
+				return null;
+			if(LavaJumperConfig==null){
+				LavaJumperConfig = new ConfigGenerator("LavaJumper");
+				LavaJumperConfig.restoreConfig();
+			}
 			return LavaJumperConfig;
 		}
 		static {
-			var config = new ConfigGenerator("LavaJumper");
-			config.restoreConfig();
-			LavaJumperConfig = config;
+
 		}
 		@Override
 		public void onInitializeClient() {
