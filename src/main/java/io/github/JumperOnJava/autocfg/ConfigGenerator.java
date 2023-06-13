@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.nio.charset.MalformedInputException;
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -165,8 +164,6 @@ public class ConfigGenerator {
      */
     public Screen getConfigScreen(List<Category> categories, Screen parent)
     {
-        if(!FabricLoader.getInstance().isModLoaded("yet-another-config-lib"))
-            return NoYaclScreen;
         var builder = YetAnotherConfigLib.createBuilder();
         builder.title(Text.of("LavaJumper Configuration XDD"));
         for(var category : categories)

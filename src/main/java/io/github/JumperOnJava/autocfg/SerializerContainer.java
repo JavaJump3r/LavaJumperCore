@@ -6,6 +6,7 @@ import io.github.JumperOnJava.autocfg.valuetypes.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class SerializerContainer {
     public SerializerContainer(){
         classData = new HashMap<>();
