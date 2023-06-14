@@ -18,8 +18,15 @@ import java.util.function.Consumer;
  * Scroll list widget for general use.
  */
 public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWidget.ScrollListEntry> {
+    @Deprecated
     public ScrollListWidget(MinecraftClient client, int width, int height, int top, int itemHeight) {
         super(client,width,height,top,height,itemHeight);
+        //setRenderBackground(false);
+        //setRenderHeader(false,0);
+    }
+    public ScrollListWidget(MinecraftClient client, int width, int height, int x, int y, int itemHeight) {
+        super(client,width,height,y,height,itemHeight);
+        setLeftPos(x);
         //setRenderBackground(false);
         //setRenderHeader(false,0);
     }
