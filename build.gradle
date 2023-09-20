@@ -74,8 +74,8 @@ jar {
 }
 
 remapJar{
-	//nestedJars.from("https://jitpack.io/com/github/JavaJump3r/JJAutoConfig/${project.autocfg_version}/com/github/JavaJump3r/JJAutoConfig/${project.autocfg_version}/JJAutoConfig-${project.autocfg_version}.jar")
-	//nestedJars.from("com.github.JavaJump3r:JJAutoConfig:${project.autocfg_version}")
+	//nestedJars.from("https://jitpack.io/com/github/JumperOnJava/JJAutoConfig/${project.autocfg_version}/com/github/JumperOnJava/JJAutoConfig/${project.autocfg_version}/JJAutoConfig-${project.autocfg_version}.jar")
+	//nestedJars.from("com.github.JumperOnJava:JJAutoConfig:${project.autocfg_version}")
 }
 // configure the maven publication
 publishing {

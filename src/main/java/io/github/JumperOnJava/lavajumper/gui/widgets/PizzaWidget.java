@@ -70,12 +70,11 @@ public class PizzaWidget implements Drawable, Element, Selectable {
         }
         return cond;
     }
-
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double amountX, double amountY) {
         boolean cond = false;
         for(var slice:new LinkedList<>(slices)  ){
-            cond = cond || slice.mouseScrolled(mouseX-x,mouseY-y,amount);
+            cond = cond || slice.mouseScrolled(mouseX-x,mouseY-y,amountX,amountY);
         }
         return cond;
     }

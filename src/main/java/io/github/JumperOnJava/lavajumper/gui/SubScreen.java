@@ -101,8 +101,8 @@ public class SubScreen implements Drawable, ParentElement, Selectable, Widget {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        return screen.mouseScrolled(mouseX-x, mouseY-y, amount);
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        return screen.mouseScrolled(mouseX-x, mouseY-y, horizontalAmount, verticalAmount);
     }
 
     @Override

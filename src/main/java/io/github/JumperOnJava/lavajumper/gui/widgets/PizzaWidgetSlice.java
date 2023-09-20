@@ -112,10 +112,10 @@ public class PizzaWidgetSlice implements Drawable, Element, Selectable {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
         var cond = isMouseOver(mouseX,mouseY);
         if(cond){
-            pizzaSlice.onScroll(amount);
+            pizzaSlice.onScroll(horizontalAmount,verticalAmount);
         }
         return cond;
     }
