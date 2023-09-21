@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ScissorMixin"
+    "ScissorMixin",
+    "ScreenIgnoreRenderAfterOverlayMixin"
   ],
   "injectors": {
     "defaultRequire": 1

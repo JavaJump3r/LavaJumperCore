@@ -40,6 +40,10 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
         return super.addEntry(entry);
     }
     @Override
+    protected int getScrollbarPositionX() {
+        return width-6;
+    }
+    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return super.mouseClicked(mouseX, mouseY, button);
     }
