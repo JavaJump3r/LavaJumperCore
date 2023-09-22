@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public abstract class AskScreen<T> extends Screen {
     private final Consumer<T> onSuccess;
     private final Runnable onFail;
-    AskScreen(Consumer<T> onSuccess, Runnable onFail){
+    public AskScreen(Consumer<T> onSuccess, Runnable onFail){
         super(Text.empty());
         this.onSuccess = onSuccess;
         this.onFail = onFail;
