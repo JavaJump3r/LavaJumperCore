@@ -15,9 +15,9 @@ public class OverlayScreen extends SubScreen {
         return true;
     }
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount)
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount)
     {
-        super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
+        super.mouseScrolled(mouseX, mouseY, amount);
         return true;
     }
 
