@@ -1,6 +1,7 @@
 package io.github.JumperOnJava.lavajumper.common;
 
 import io.github.JumperOnJava.autocfg.Configurable;
+import io.github.JumperOnJava.autocfg.CustomCategory;
 import io.github.JumperOnJava.lavajumper.common.actiontext.ActionTextRenderer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 

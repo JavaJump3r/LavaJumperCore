@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 public class TickActionQueue {
     /**
-     * Generar purpose queue for any actions. May be used by other mods in inpredictable ways
+     * General purpose queue for any actions. May be used by other mods in unpredictable ways
      */
     public static TickActionQueue interactQueue;
     static {
