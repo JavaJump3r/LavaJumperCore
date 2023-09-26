@@ -1,4 +1,4 @@
-package io.github.JumperOnJava.lavajumper.common;
+package io.github.JumperOnJava.lavajumper.datatypes;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
